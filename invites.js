@@ -49,7 +49,7 @@ function generateLinks() {
 			document.getElementById('applicationLink').href = params['type'] === 'group' ? `group://${params['token']}` : `search://${params['token']}`;
 			break;
 		case 'Android':
-			window.location.replace("https://backend.open-sesame-do-good.com?token=${params['token']}&type=${params['type']}");
+			window.location.replace(`https://play.google.com/store/apps/details?id=com.open.sesame&referrer=${params['token']}`);
 			break;
 		case 'Personal Computer':
 			document.getElementById('applicationLink').style.display = 'none';
