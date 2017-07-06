@@ -46,10 +46,15 @@ function generateLinks() {
 	switch (operatingSystem) {
 		case 'iOS':
 			document.getElementById('googleStoreLink').style.display = 'none';
-			document.getElementById('applicationLink').href = params['type'] === 'group' ? `group://${params['token']}` : `search://${params['token']}`;
+			document.getElementById('applicationLink').href = params['groupId'] ? `group://${params['groupId']}/${params['token']}` : `search://${params['token']}`;
 			break;
 		case 'Android':
-			window.location.replace(`https://play.google.com/store/apps/details?id=com.open.sesame&referrer=${params['token']}`);
+			var groupIdParam = params['groupId'] ? `%26groupId%3D${params['groupId']}` : null;
+			let url = `https://play.google.com/store/apps/details?id=com.open.sesame&referrer=token%3D${params['token']}`;
+			if (groupIdParam) {
+				url = url + groupIdParam;
+			}
+			window.location.replace(url);
 			break;
 		case 'Personal Computer':
 			document.getElementById('applicationLink').style.display = 'none';
