@@ -39,10 +39,8 @@ function parse_query_string(query) {
 	return query_string;
 }
 
-function generateLinks() {
-	var query = window.location.search.substring(1);
+function generateLinks(params) {
 	var operatingSystem = getMobileOperatingSystem();
-	var params = parse_query_string(query);
 	switch (operatingSystem) {
 		case 'iOS':
 			document.getElementById('googleStoreLink').style.display = 'none';
@@ -66,5 +64,17 @@ function generateLinks() {
 }
 
 window.onload = function () {
-	generateLinks();
+	var query = window.location.search.substring(1);
+	var params = parse_query_string(query);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			debugger;
+			document.getElementById("demo").innerHTML =
+				this.responseText;
+		}
+	};
+	xhttp.open("GET", `http://localhost:8080/anon/invite?token=${params['token']}`, true);
+	xhttp.send();
+	generateLinks(params);
 };
