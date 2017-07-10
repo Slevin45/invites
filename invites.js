@@ -74,7 +74,7 @@ window.onload = function () {
 				this.responseText;
 		}
 	};
-	xhttp.open("GET", `http://localhost:8080/anon/invite?token=${params['token']}`, true);
+	xhttp.open("GET", `http://localhost:80/anon/invite?token=${params['token']}`, true);
 	xhttp.send();
 	generateLinks(params);
 };
