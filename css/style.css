@@ -1,0 +1,115 @@
+@font-face {
+	font-family: SFUIDisplay;
+	src: url(../fonts/SFUIDisplay-Medium.otf);
+}
+body {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	background-color: #EFF3F5;
+	background-image: url(../images/bg.png);
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: 50% 0;
+	background-repeat: no-repeat;
+	font-family: SFUIDisplay;
+	text-align: center;
+}
+main {
+	margin: 0 auto;
+	max-width: 600px;
+}
+p {
+	font-size: 16px;
+	color: #575f69;
+}
+.logo {
+	width: 300px;
+	height: 58px;
+	margin: 80px auto 150px;
+	background-image: url(../images/logo.png);
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+.search-title {
+	display: inline-block;
+	max-width: 482px;
+	padding: 20px 25px;
+	margin: 0 auto 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #ffffff;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+	text-align: center;
+	font-weight: bold;
+	color: #575f69;
+}
+.price {
+	color: #008bcf;
+	font-weight: bold;
+}
+.button {
+	display: inline-block;
+}
+.button:first-child {
+	margin-right: 10px;
+}
+.buttons {
+	padding-top: 10px;
+}
+.ps {
+	padding-top: 40px;
+	color: #575f69;
+}
+.ps a {
+	color: #008bcf;
+	text-decoration: none;
+}
+.go-to-group {
+	padding: 15px 41px 16px;
+	display: inline-block;
+	vertical-align: top;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #0099cc;
+	color: #fff;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+@media only screen and  (max-width: 768px) {
+	body {
+		-webkit-background-size: cover;
+		background-size: cover;
+	}
+	main {
+		padding: 0 10px;
+	}
+	p {
+		font-size: 14px;
+	}
+	.logo {
+		margin: 40px auto 50px;
+	}
+	.thanks {
+		display: none;
+	}
+	.search-title {
+		padding: 10px 15px;
+		text-align: center;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		font-size: 14px;
+	}
+    .ps {
+	    padding-top: 30px;
+    }
+}

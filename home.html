@@ -1,16 +1,33 @@
 <script src="invites.js" type="text/javascript"></script>
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-</head>
-<body>
-<a id="appStoreLink" href="https://itunes.apple.com/by/app/sesame/id1175348555?mt=8">App Store</a>
-<br>
-<a id="applicationLink">Link to search</a>
-<br>
-<a id="googleStoreLink" href="https://play.google.com/store/apps/details?id=com.open.sesame">Google Store</a>
-<br>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=100%, height=device-height, initial-scale=1"">
+		<link rel="stylesheet" href="css/style.css">
+		<title>Title</title>
+	</head>
+	<body>
+		<main>
+			<div class="logo"></div>
+			<p><b id="senderName">Sesame sender name</b> invites you to sesame, the helping network!</p>
+			<p>Hi, I need your help with the following:</p>
+			<div class="search-title" id="itemTitle">title of the search, if it is a group invitation the sentence is instead: „Hi, please join the sesame group [group name]”</div>
+			<p>Sesame allows to easily request help from friends and their friends.</p>
+			<p id="donationAmountText">When you help, a donation of <span class="price" id="donationAmountValue">$50</span> will be given for a good cause.
+				If you follow this link you can install the app from the safe store linked to your phone.</p>
+			<div class="buttons">
+				<a id="appStoreLink" href="https://itunes.apple.com/by/app/sesame/id1175348555?mt=8" class="button">
+					<img src="images/appstore.png" alt="App Store">
+				</a>
+				<a id="applicationLink" class="go-to-group">Go to group</a>
+				<a id="googleStoreLink" href="https://play.google.com/store/apps/details?id=com.open.sesame" class="button">
+					<img src="images/gplay.png" alt="Google Store">
+				</a>
+			</div>
+			<p class="thanks">Thank you, <b id="senderNameFooter">Sesame sender name</b></p>
+			<div class="ps">P.S. More Info on sesame you find here: <a href="www.open-sesame-do-good.com">www.open-sesame-do-good.com</a></div>
+		</main>
+	</body>
 </html>

@@ -44,7 +44,7 @@ function generateLinks(params) {
 	switch (operatingSystem) {
 		case 'iOS':
 			document.getElementById('googleStoreLink').style.display = 'none';
-			document.getElementById('applicationLink').href = params['groupId'] ? `group://${params['groupId']}/${params['token']}` : `search://${params['token']}`;
+			document.getElementById('applicationLink').href = params['groupId'] ? `sesame://group/${params['groupId']}/${params['token']}` : `sesame://search/${params['token']}`;
 			break;
 		case 'Android':
 			var groupIdParam = params['groupId'] ? `%26groupId%3D${params['groupId']}` : null;
@@ -64,17 +64,24 @@ function generateLinks(params) {
 }
 
 window.onload = function () {
-	var query = window.location.search.substring(1);
-	var params = parse_query_string(query);
-	var xhttp = new XMLHttpRequest();
+	let query = window.location.search.substring(1);
+	let params = parse_query_string(query);
+	let xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			debugger;
-			document.getElementById("demo").innerHTML =
-				this.responseText;
+		if (this.readyState === 4 && this.status === 200) {
+			if (!this.responseText) return;
+			let responseText = JSON.parse(this.responseText);
+			document.getElementById("senderNameFooter").innerHTML = responseText.senderName;
+			document.getElementById("senderName").innerHTML = responseText.senderName;
+			if (responseText.donationAmout) {
+				document.getElementById("donationAmountValue").innerHTML = `$${responseText.donationAmout}`;
+			} else {
+				document.getElementById("donationAmountText").innerHTML = '';
+			}
+			document.getElementById("itemTitle").innerHTML = responseText.searchTitle ? responseText.searchTitle : `Hi, please join the sesame group ${responseText.groupName}`;
 		}
 	};
-	xhttp.open("GET", `http://localhost:8080/anon/invite?token=${params['token']}`, true);
+	xhttp.open("GET", `http://dev-backend.open-sesame-do-good.com/anon/invite?token=${params['token']}`, true);
 	xhttp.send();
 	generateLinks(params);
 };
