@@ -78,7 +78,13 @@ window.onload = function () {
 			} else {
 				document.getElementById("donationAmountText").innerHTML = '';
 			}
-			document.getElementById("itemTitle").innerHTML = responseText.searchTitle ? responseText.searchTitle : `Hi, please join the sesame group ${responseText.groupName}`;
+			if (responseText.searchTitle) {
+				document.getElementById("itemTitle").innerHTML = responseText.searchTitle;
+				document.getElementById("applicationLink").innerHTML = 'Go to searh';
+			} else {
+				document.getElementById("itemTitle").innerHTML = `Hi, please join the sesame group ${responseText.groupName}`;
+				document.getElementById("applicationLink").innerHTML = 'Go to group';
+			}
 		}
 	};
 	xhttp.open("GET", `http://dev-backend.open-sesame-do-good.com/anon/invite?token=${params['token']}`, true);
