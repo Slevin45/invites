@@ -101,6 +101,9 @@ p {
 	.thanks {
 		display: none;
 	}
+	.button:first-child {
+		margin-right: 20px;
+	}
 	.search-title {
 		padding: 10px 15px;
 		text-align: center;
@@ -109,7 +112,24 @@ p {
 		border-radius: 5px;
 		font-size: 14px;
 	}
-    .ps {
-	    padding-top: 30px;
-    }
+	.buttons img {
+		height: 35px;
+	}
+	.go-to-group {
+		padding: 9px 21px 10px;
+	}
+	.ps {
+		font-size: 14px;
+		padding-top: 30px;
+	}
+}
+@media only screen and  (max-width: 480px) {
+	.logo {
+		width: 230px;
+	}
+}
+@media only screen and  (max-width: 320px) {
+	.logo {
+	    margin: 30px auto 30px;
+	}
 }
