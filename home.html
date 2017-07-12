@@ -1,4 +1,4 @@
-<script src="invites.js" type="text/javascript"></script>
+<script src="js/invites.js" type="text/javascript"></script>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -11,12 +11,11 @@
 	<body>
 		<main>
 			<div class="logo"></div>
-			<p><b id="senderName">Sesame sender name</b> invites you to sesame, the helping network!</p>
-			<p>Hi, I need your help with the following:</p>
-			<div class="search-title" id="itemTitle">title of the search, if it is a group invitation the sentence is instead: „Hi, please join the sesame group [group name]”</div>
-			<p>Sesame allows to easily request help from friends and their friends.</p>
-			<p id="donationAmountText">When you help, a donation of <span class="price" id="donationAmountValue">$50</span> will be given for a good cause.
-				If you follow this link you can install the app from the safe store linked to your phone.</p>
+			<p><b id="senderName"></b><span id="invite"></span></p>
+			<p id="greetingAndRequest">Hi, I need your help with the following:</p>
+			<div class="search-title" id="itemTitle"></div>
+			<p><span id="sesameAllowsText"></span><b id='groupDescriptionText'></b></p>
+			<p id='ifYouFollowText'></p>
 			<div class="buttons">
 				<a id="appStoreLink" href="https://itunes.apple.com/by/app/sesame/id1175348555?mt=8" class="button">
 					<img src="images/appstore.png" alt="App Store">
@@ -26,7 +25,7 @@
 					<img src="images/gplay.png" alt="Google Store">
 				</a>
 			</div>
-			<p class="thanks">Thank you, <b id="senderNameFooter">Sesame sender name</b></p>
+			<p class="thanks">Thank you<b id="senderNameFooter"></b></p>
 			<div class="ps">P.S. More Info on sesame you find here: <a href="http://wp.sesametesting.com/">www.open-sesame-do-good.com</a></div>
 		</main>
 	</body>

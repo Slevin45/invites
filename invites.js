@@ -1,4 +1,5 @@
 
+var ifYouFollowText;
 function getMobileOperatingSystem() {
 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -45,6 +46,7 @@ function generateLinks(params) {
 		case 'iOS':
 			document.getElementById('googleStoreLink').style.display = 'none';
 			document.getElementById('applicationLink').href = params['groupId'] ? `sesame://group/${params['groupId']}/${params['token']}` : `sesame://search/${params['token']}`;
+			ifYouFollowText = 'If you follow the this link, you can install the app from the App Store and afterwards open the group in the installed app:';
 			break;
 		case 'Android':
 			var groupIdParam = params['groupId'] ? `%26groupId%3D${params['groupId']}` : null;
@@ -56,6 +58,7 @@ function generateLinks(params) {
 			break;
 		case 'Personal Computer':
 			document.getElementById('applicationLink').style.display = 'none';
+			ifYouFollowText = 'If you follow the this link, you can install the app from the safe store linked to your phone and afterwards open the group in the installed app:';
 			break;
 		default:
 			document.getElementById('applicationLink').style.display = 'none';
@@ -67,27 +70,37 @@ window.onload = function () {
 	let query = window.location.search.substring(1);
 	let params = parse_query_string(query);
 	let xhttp = new XMLHttpRequest();
+	generateLinks(params);
 	xhttp.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 200) {
 			if (!this.responseText) return;
 			let responseText = JSON.parse(this.responseText);
-			document.getElementById("senderNameFooter").innerHTML = responseText.senderName;
-			document.getElementById("senderName").innerHTML = responseText.senderName;
-			if (responseText.donationAmout) {
-				document.getElementById("donationAmountValue").innerHTML = `$${responseText.donationAmout}`;
-			} else {
-				document.getElementById("donationAmountText").innerHTML = '';
+			if (responseText.senderName) {
+				document.getElementById("senderName").innerHTML = responseText.senderName;
+				document.getElementById("invite").innerHTML = ' invites you to sesame, the helping network:';
+				document.getElementById("senderNameFooter").innerHTML = `, ${responseText.senderName}`;
 			}
 			if (responseText.searchTitle) {
 				document.getElementById("itemTitle").innerHTML = responseText.searchTitle;
 				document.getElementById("applicationLink").innerHTML = 'Go to searh';
-			} else {
-				document.getElementById("itemTitle").innerHTML = `Hi, please join the sesame group ${responseText.groupName}`;
+				document.getElementById("sesameAllowsText").innerHTML = 'I also joined sesame. This new free app allows to easily request help from your friends and their friends';
+				console.log( ifYouFollowText.replace('open the group', 'open the search')); //TODO delete me
+				document.getElementById("ifYouFollowText").innerHTML = ifYouFollowText.replace('open the group', 'open the search');
+			}
+			if (responseText.groupName) {
+				document.getElementById("greetingAndRequest").innerHTML = 'Hi, please join the sesame group';
+				document.getElementById("itemTitle").innerHTML = responseText.groupName;
 				document.getElementById("applicationLink").innerHTML = 'Go to group';
+				if (responseText.groupDescription) {
+					document.getElementById("sesameAllowsText").innerHTML = 'The sesame app allows to easily request help from friends and their friends. Some details on the group’s purpose: ';
+					document.getElementById("groupDescriptionText").innerHTML = responseText.groupDescription;
+				} else {
+					document.getElementById("sesameAllowsText").innerHTML = 'The sesame app allows to easily request help from friends and their friends.';
+				}
+				document.getElementById("ifYouFollowText").innerHTML = ifYouFollowText;
 			}
 		}
 	};
 	xhttp.open("GET", `http://dev-backend.open-sesame-do-good.com/anon/invite?token=${params['token']}`, true);
 	xhttp.send();
-	generateLinks(params);
 };
