@@ -98,9 +98,6 @@ p {
 	.logo {
 		margin: 40px auto 50px;
 	}
-	.thanks {
-		display: none;
-	}
 	.button:first-child {
 		margin-right: 20px;
 	}
